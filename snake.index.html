@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,10 @@
             overflow: hidden;
         }
 
-        h1 { margin-top: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        h1 {
+            margin-top: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
 
         .game-container {
             position: relative;
@@ -43,7 +46,10 @@
         /* 界面覆盖层 */
         .overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background: rgba(0, 0, 0, 0.9);
             display: flex;
             flex-direction: column;
@@ -53,7 +59,9 @@
             text-align: center;
         }
 
-        .hidden { display: none !important; }
+        .hidden {
+            display: none !important;
+        }
 
         /* 按钮样式 */
         button {
@@ -67,13 +75,29 @@
             margin: 10px;
         }
 
-        .btn-green { background-color: #27ae60; color: white; }
-        .btn-green:hover { background-color: #2ecc71; }
+        .btn-green {
+            background-color: #27ae60;
+            color: white;
+        }
 
-        .btn-blue { background-color: #3498db; color: white; }
-        .btn-blue:hover { background-color: #2980b9; }
+            .btn-green:hover {
+                background-color: #2ecc71;
+            }
 
-        .controls-hint { margin-top: 15px; font-size: 0.9rem; color: #bdc3c7; }
+        .btn-blue {
+            background-color: #3498db;
+            color: white;
+        }
+
+            .btn-blue:hover {
+                background-color: #2980b9;
+            }
+
+        .controls-hint {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
 
         /* 收款码图片样式 */
         .qr-code {
@@ -84,7 +108,7 @@
             border: 5px solid white;
             border-radius: 10px;
         }
-        
+
         .price-tag {
             font-size: 2rem;
             color: #f1c40f;
@@ -104,7 +128,7 @@
 
     <div class="game-container">
         <canvas id="gameCanvas" width="400" height="400"></canvas>
-        
+
         <!-- 1. 初始支付界面 -->
         <div id="payScreen" class="overlay">
             <h2 style="color: #f1c40f;">游戏收费</h2>
@@ -119,7 +143,7 @@
             <!-- 这里引用了你的收款码图片 -->
             <img src="pay.jpg" alt="收款码" class="qr-code">
             <p style="font-size: 0.9rem; color: #ccc; margin-bottom: 20px;">支付完成后请点击下方按钮</p>
-            
+
             <div>
                 <button class="btn-green" onclick="confirmPayment()">我已支付</button>
                 <button style="background-color: #7f8c8d; color: white;" onclick="closeQRCode()">取消</button>
@@ -149,7 +173,7 @@
         const scoreEl = document.getElementById('score');
         const highScoreEl = document.getElementById('highScore');
         const finalScoreEl = document.getElementById('finalScore');
-        
+
         // 获取各个界面层
         const payScreen = document.getElementById('payScreen');
         const qrScreen = document.getElementById('qrScreen');
@@ -210,10 +234,10 @@
             dx = 0; dy = -1;
             nextDirection = { x: 0, y: -1 };
             scoreEl.innerText = score;
-            
+
             startScreen.classList.add('hidden');
             gameOverScreen.classList.add('hidden');
-            
+
             isGameRunning = true;
             generateApple();
 
@@ -268,8 +292,8 @@
 
             snake.forEach((part, index) => {
                 ctx.fillStyle = (index === 0) ? '#27ae60' : '#2ecc71';
-                ctx.fillRect(part.x * TILE_SIZE + 1, part.y * TILE_SIZE + 1, TILE_SIZE - 2, TILE_SIZE - 2);
-            });
+            ctx.fillRect(part.x * TILE_SIZE + 1, part.y * TILE_SIZE + 1, TILE_SIZE - 2, TILE_SIZE - 2);
+        });
         }
 
         function generateApple() {
@@ -282,8 +306,8 @@
                 for (let part of snake) {
                     if (part.x === newApple.x && part.y === newApple.y) collision = true;
                 }
-                if (!collision) { apple = newApple; break; }
-            }
+            if (!collision) { apple = newApple; break; }
+        }
         }
 
         function gameOver() {
